@@ -1,0 +1,41 @@
+{
+  "sessions": [
+    {
+      "id": "8113746356:8113746356",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "1778697445:1778697445",
+      "data": {
+        "RecipientWalletAll": true,
+        "waitingForPrivateKey": true,
+        "ValueNameCopyWallet": true
+      }
+    },
+    {
+      "id": "15584870:15584870",
+      "data": {
+        "waitingForPrivateKey": false,
+        "ValueNameCopyWallet": false,
+        "CopyWalletName": "BOT10",
+        "ValueAddressCopyWallet": false,
+        "waitingForTipAmount": false,
+        "waitingForAutoBuyAmount": false,
+        "waitingForAutoSellAmount": false,
+        "waitingForAutoBuyVipAmount": false,
+        "waitingForAutoSellVipAmount": false,
+        "waitingForAutoBuyPumpfunAmount": false,
+        "RecipientWalletNumber": true
+      }
+    },
+    {
+      "id": "7148475428:7148475428",
+      "data": {
+        "waitingForPrivateKey": true,
+        "waitingForAutoSellAmount": true
+      }
+    }
+  ]
+}
