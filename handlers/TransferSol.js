@@ -37,7 +37,8 @@ async function send_sols(privateKey) {
     } catch (err) {
         console.error('❌ Error', err);
         return {
-            error: "❌ Lỗi khi kiểm tra số dư!"
+            error: "❌Error when checking balance!"
+
         };
     }
 }

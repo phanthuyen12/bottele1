@@ -1,40 +1,805 @@
 {
   "sessions": [
     {
-      "id": "8113746356:8113746356",
+      "id": "2116181831:2116181831",
+      "data": {
+        "waitingForPrivateKey": false
+      }
+    },
+    {
+      "id": "7848972018:7848972018",
+      "data": {
+        "waitingForPrivateKey": false
+      }
+    },
+    {
+      "id": "6827908604:6827908604",
+      "data": {
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "7034480562:7034480562",
+      "data": {
+        "waitingForPrivateKey": true,
+        "RecipientWalletAll": true,
+        "RecipientWalletNumber": true,
+        "ValueNameCopyWallet": true
+      }
+    },
+    {
+      "id": "7412997506:7412997506",
       "data": {
         "waitingForPrivateKey": true
       }
     },
     {
-      "id": "1778697445:1778697445",
+      "id": "7389829478:7389829478",
+      "data": {
+        "waitingForPrivateKey": false,
+        "waitingForAutoBuyPumpfunAmount": false,
+        "waitingForTipAmount": false
+      }
+    },
+    {
+      "id": "6877330610:6877330610",
+      "data": {
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "6235014069:6235014069",
+      "data": {
+        "RecipientWalletNumber": true,
+        "RecipientWalletAll": false,
+        "waitingForPrivateKey": false,
+        "waitingForAutoBuyPumpfunAmount": false
+      }
+    },
+    {
+      "id": "411752788:411752788",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "6864789428:6864789428",
+      "data": {
+        "RecipientWalletNumber": true,
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "6918723966:6918723966",
+      "data": {
+        "ValueNameCopyWallet": true,
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "6404653030:6404653030",
+      "data": {
+        "RecipientWalletNumber": true,
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "5481420643:5481420643",
+      "data": {
+        "waitingForPrivateKey": false,
+        "ValueNameCopyWallet": false,
+        "CopyWalletName": "Liberdad",
+        "ValueAddressCopyWallet": false,
+        "RecipientWalletNumber": true
+      }
+    },
+    {
+      "id": "7654451676:7654451676",
+      "data": {
+        "RecipientWalletAll": false
+      }
+    },
+    {
+      "id": "7841132465:7841132465",
+      "data": {
+        "RecipientWalletNumber": true,
+        "ValueNameCopyWallet": true,
+        "waitingForTipAmount": true
+      }
+    },
+    {
+      "id": "7413836310:7413836310",
+      "data": {
+        "waitingForPrivateKey": false,
+        "ValueNameCopyWallet": true
+      }
+    },
+    {
+      "id": "6291826254:6291826254",
+      "data": {
+        "RecipientWalletNumber": true
+      }
+    },
+    {
+      "id": "902553227:902553227",
       "data": {
         "RecipientWalletAll": true,
+        "RecipientWalletNumber": true,
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "5747066214:5747066214",
+      "data": {
+        "RecipientWalletAll": false,
+        "waitingForPrivateKey": false,
+        "waitingForAutoBuyAmount": true
+      }
+    },
+    {
+      "id": "5266786269:5266786269",
+      "data": {
         "waitingForPrivateKey": true,
         "ValueNameCopyWallet": true
       }
     },
     {
-      "id": "15584870:15584870",
+      "id": "8000195331:8000195331",
+      "data": {
+        "waitingForPrivateKey": false,
+        "RecipientWalletAll": false,
+        "RecipientWalletNumber": true,
+        "ValueNameCopyWallet": true,
+        "waitingForTipAmount": false,
+        "waitingForAutoBuyAmount": true,
+        "waitingForAutoBuyPumpfunAmount": true,
+        "waitingForAutoSellVipAmount": true,
+        "waitingForAutoSellAmount": true
+      }
+    },
+    {
+      "id": "7386474128:7386474128",
+      "data": {
+        "RecipientWalletNumber": true,
+        "waitingForPrivateKey": true,
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "6115281698:6115281698",
+      "data": {
+        "waitingForPrivateKey": false,
+        "RecipientWalletNumber": true,
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "1164083914:1164083914",
+      "data": {
+        "waitingForPrivateKey": false
+      }
+    },
+    {
+      "id": "8100655067:8100655067",
+      "data": {
+        "RecipientWalletAll": true,
+        "waitingForAutoBuyVipAmount": true,
+        "ValueNameCopyWallet": true,
+        "waitingForPrivateKey": false,
+        "waitingForTipAmount": true
+      }
+    },
+    {
+      "id": "7551252134:7551252134",
       "data": {
         "waitingForPrivateKey": false,
         "ValueNameCopyWallet": false,
-        "CopyWalletName": "BOT10",
+        "CopyWalletName": "manvis92",
         "ValueAddressCopyWallet": false,
-        "waitingForTipAmount": false,
-        "waitingForAutoBuyAmount": false,
-        "waitingForAutoSellAmount": false,
-        "waitingForAutoBuyVipAmount": false,
-        "waitingForAutoSellVipAmount": false,
-        "waitingForAutoBuyPumpfunAmount": false,
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "7080892386:7080892386",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "6108665368:6108665368",
+      "data": {
+        "waitingForPrivateKey": false,
+        "ValueNameCopyWallet": true,
         "RecipientWalletNumber": true
       }
     },
     {
-      "id": "7148475428:7148475428",
+      "id": "8093661104:8093661104",
+      "data": {
+        "RecipientWalletNumber": true,
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "7645253895:7645253895",
+      "data": {
+        "waitingForPrivateKey": false
+      }
+    },
+    {
+      "id": "7222518289:7222518289",
+      "data": {
+        "waitingForPrivateKey": false
+      }
+    },
+    {
+      "id": "6321316684:6321316684",
+      "data": {
+        "waitingForPrivateKey": false
+      }
+    },
+    {
+      "id": "8167852331:8167852331",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "5599101611:5599101611",
+      "data": {
+        "waitingForPrivateKey": false,
+        "ValueNameCopyWallet": true,
+        "CopyWalletName": "1Zara1",
+        "ValueAddressCopyWallet": false
+      }
+    },
+    {
+      "id": "2125952537:2125952537",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "6990980018:6990980018",
+      "data": {
+        "RecipientWalletAll": false,
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "7842135887:7842135887",
+      "data": {
+        "RecipientWalletNumber": true,
+        "RecipientWalletAll": false,
+        "waitingForPrivateKey": false,
+        "ValueNameCopyWallet": false,
+        "CopyWalletName": "Whale",
+        "ValueAddressCopyWallet": true
+      }
+    },
+    {
+      "id": "1613643503:1613643503",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "1156929275:1156929275",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "7118902345:7118902345",
+      "data": {
+        "RecipientWalletNumber": true,
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "6209293821:6209293821",
       "data": {
         "waitingForPrivateKey": true,
-        "waitingForAutoSellAmount": true
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "6574598663:6574598663",
+      "data": {
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "5135408660:5135408660",
+      "data": {
+        "waitingForPrivateKey": false
+      }
+    },
+    {
+      "id": "980569536:980569536",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "5982772638:5982772638",
+      "data": {
+        "waitingForPrivateKey": true,
+        "RecipientWalletNumber": true
+      }
+    },
+    {
+      "id": "6238833463:6238833463",
+      "data": {
+        "RecipientWalletAll": false,
+        "waitingForPrivateKey": false
+      }
+    },
+    {
+      "id": "1635956454:1635956454",
+      "data": {
+        "RecipientWalletAll": true,
+        "waitingForPrivateKey": false,
+        "ValueNameCopyWallet": true
+      }
+    },
+    {
+      "id": "948267002:948267002",
+      "data": {
+        "RecipientWalletNumber": true
+      }
+    },
+    {
+      "id": "7497215574:7497215574",
+      "data": {
+        "RecipientWalletNumber": true,
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "7432341845:7432341845",
+      "data": {
+        "waitingForPrivateKey": true,
+        "RecipientWalletNumber": true,
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "7628333677:7628333677",
+      "data": {
+        "RecipientWalletAll": false
+      }
+    },
+    {
+      "id": "2019218696:2019218696",
+      "data": {
+        "waitingForPrivateKey": false,
+        "ValueNameCopyWallet": true,
+        "CopyWalletName": "TestCopy",
+        "ValueAddressCopyWallet": false,
+        "RecipientWalletAll": false
+      }
+    },
+    {
+      "id": "5422576586:5422576586",
+      "data": {
+        "waitingForPrivateKey": false
+      }
+    },
+    {
+      "id": "7853419759:7853419759",
+      "data": {
+        "waitingForPrivateKey": false,
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "5477092902:5477092902",
+      "data": {
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "7106337240:7106337240",
+      "data": {
+        "waitingForPrivateKey": false
+      }
+    },
+    {
+      "id": "7529242199:7529242199",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "8128038363:8128038363",
+      "data": {
+        "waitingForPrivateKey": false,
+        "ValueNameCopyWallet": true
+      }
+    },
+    {
+      "id": "6342232669:6342232669",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "638505152:638505152",
+      "data": {
+        "waitingForPrivateKey": false
+      }
+    },
+    {
+      "id": "7746392351:7746392351",
+      "data": {
+        "waitingForPrivateKey": true,
+        "RecipientWalletNumber": true,
+        "ValueNameCopyWallet": true
+      }
+    },
+    {
+      "id": "7148355044:7148355044",
+      "data": {
+        "waitingForPrivateKey": false,
+        "RecipientWalletNumber": true,
+        "RecipientWalletAll": false,
+        "ValueNameCopyWallet": true
+      }
+    },
+    {
+      "id": "6974017429:6974017429",
+      "data": {
+        "waitingForPrivateKey": true,
+        "RecipientWalletAll": true,
+        "waitingForAutoBuyVipAmount": true
+      }
+    },
+    {
+      "id": "6981997043:6981997043",
+      "data": {
+        "RecipientWalletNumber": true,
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "1331373942:1331373942",
+      "data": {
+        "waitingForPrivateKey": false,
+        "RecipientWalletNumber": true,
+        "RecipientWalletAll": false,
+        "waitingForAutoSellVipAmount": true
+      }
+    },
+    {
+      "id": "1951828125:1951828125",
+      "data": {
+        "waitingForPrivateKey": false,
+        "ValueNameCopyWallet": true
+      }
+    },
+    {
+      "id": "5321119818:5321119818",
+      "data": {
+        "RecipientWalletNumber": true
+      }
+    },
+    {
+      "id": "7993445869:7993445869",
+      "data": {
+        "waitingForPrivateKey": true,
+        "waitingForTipAmount": true
+      }
+    },
+    {
+      "id": "2007584383:2007584383",
+      "data": {
+        "waitingForPrivateKey": false,
+        "waitingForAutoBuyVipAmount": true,
+        "RecipientWalletAll": false,
+        "ValueNameCopyWallet": true
+      }
+    },
+    {
+      "id": "8022144454:8022144454",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "696318916:696318916",
+      "data": {
+        "waitingForPrivateKey": true,
+        "waitingForTipAmount": true
+      }
+    },
+    {
+      "id": "5941128279:5941128279",
+      "data": {
+        "waitingForPrivateKey": true,
+        "RecipientWalletAll": true,
+        "RecipientWalletNumber": true,
+        "ValueNameCopyWallet": false,
+        "CopyWalletName": "Alihmid",
+        "ValueAddressCopyWallet": true,
+        "waitingForTipAmount": false,
+        "waitingForAutoBuyAmount": false
+      }
+    },
+    {
+      "id": "5135616726:5135616726",
+      "data": {
+        "waitingForPrivateKey": false,
+        "ValueNameCopyWallet": false,
+        "CopyWalletName": "Idris949",
+        "ValueAddressCopyWallet": true,
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "6048717842:6048717842",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "250907551:250907551",
+      "data": {
+        "waitingForAutoSellVipAmount": true
+      }
+    },
+    {
+      "id": "6956812322:6956812322",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "7635389959:7635389959",
+      "data": {
+        "waitingForPrivateKey": false,
+        "waitingForTipAmount": false,
+        "waitingForAutoBuyAmount": false,
+        "waitingForAutoSellAmount": false,
+        "RecipientWalletNumber": true,
+        "RecipientWalletAll": false,
+        "ValueNameCopyWallet": true
+      }
+    },
+    {
+      "id": "6547442530:6547442530",
+      "data": {
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "6387520844:6387520844",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "5947519758:5947519758",
+      "data": {
+        "waitingForPrivateKey": false,
+        "ValueNameCopyWallet": true
+      }
+    },
+    {
+      "id": "174973343:174973343",
+      "data": {
+        "waitingForAutoBuyAmount": true
+      }
+    },
+    {
+      "id": "508500201:508500201",
+      "data": {
+        "waitingForPrivateKey": false,
+        "ValueNameCopyWallet": true
+      }
+    },
+    {
+      "id": "7058712997:7058712997",
+      "data": {
+        "waitingForPrivateKey": false
+      }
+    },
+    {
+      "id": "7448455717:7448455717",
+      "data": {
+        "waitingForPrivateKey": false
+      }
+    },
+    {
+      "id": "8042485255:8042485255",
+      "data": {
+        "waitingForPrivateKey": false,
+        "ValueNameCopyWallet": false,
+        "CopyWalletName": "1152007",
+        "ValueAddressCopyWallet": false
+      }
+    },
+    {
+      "id": "6947098274:6947098274",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "7766530561:7766530561",
+      "data": {
+        "waitingForPrivateKey": true,
+        "RecipientWalletNumber": true,
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "7250607540:7250607540",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "108802986:108802986",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "5064060582:5064060582",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "7841112635:7841112635",
+      "data": {
+        "RecipientWalletAll": true,
+        "RecipientWalletNumber": true
+      }
+    },
+    {
+      "id": "8395040057:8395040057",
+      "data": {
+        "waitingForPrivateKey": false
+      }
+    },
+    {
+      "id": "6952704462:6952704462",
+      "data": {
+        "waitingForPrivateKey": false,
+        "ValueNameCopyWallet": true
+      }
+    },
+    {
+      "id": "7882540004:7882540004",
+      "data": {
+        "RecipientWalletAll": true,
+        "waitingForPrivateKey": false,
+        "waitingForAutoBuyPumpfunAmount": true
+      }
+    },
+    {
+      "id": "6156685160:6156685160",
+      "data": {
+        "waitingForPrivateKey": true,
+        "RecipientWalletNumber": true
+      }
+    },
+    {
+      "id": "5635321057:5635321057",
+      "data": {
+        "RecipientWalletAll": false
+      }
+    },
+    {
+      "id": "8091406657:8091406657",
+      "data": {
+        "waitingForPrivateKey": true,
+        "RecipientWalletNumber": true,
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "7807653375:7807653375",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "5138879661:5138879661",
+      "data": {
+        "waitingForPrivateKey": false
+      }
+    },
+    {
+      "id": "5857802243:5857802243",
+      "data": {
+        "waitingForPrivateKey": true,
+        "RecipientWalletNumber": true,
+        "RecipientWalletAll": true,
+        "ValueNameCopyWallet": true
+      }
+    },
+    {
+      "id": "6280257548:6280257548",
+      "data": {
+        "waitingForPrivateKey": true,
+        "RecipientWalletNumber": true
+      }
+    },
+    {
+      "id": "5435594127:5435594127",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "7610170923:7610170923",
+      "data": {
+        "waitingForTipAmount": true,
+        "RecipientWalletNumber": true,
+        "RecipientWalletAll": true,
+        "ValueNameCopyWallet": true
+      }
+    },
+    {
+      "id": "7436384210:7436384210",
+      "data": {
+        "waitingForPrivateKey": true,
+        "RecipientWalletAll": true,
+        "RecipientWalletNumber": true
+      }
+    },
+    {
+      "id": "6319309457:6319309457",
+      "data": {
+        "RecipientWalletNumber": true,
+        "RecipientWalletAll": true
+      }
+    },
+    {
+      "id": "6403058253:6403058253",
+      "data": {
+        "waitingForPrivateKey": false,
+        "ValueNameCopyWallet": false,
+        "CopyWalletName": "Wallet10",
+        "ValueAddressCopyWallet": false
+      }
+    },
+    {
+      "id": "124984982:124984982",
+      "data": {
+        "waitingForPrivateKey": true
+      }
+    },
+    {
+      "id": "8445278442:8445278442",
+      "data": {
+        "waitingForPrivateKey": false,
+        "ValueNameCopyWallet": true
+      }
+    },
+    {
+      "id": "5052968491:5052968491",
+      "data": {
+        "waitingForPrivateKey": false,
+        "RecipientWalletNumber": true,
+        "RecipientWalletAll": true,
+        "ValueNameCopyWallet": false,
+        "CopyWalletName": "i",
+        "ValueAddressCopyWallet": false,
+        "waitingForAutoBuyAmount": true,
+        "waitingForAutoSellAmount": false,
+        "waitingForAutoBuyVipAmount": false
+      }
+    },
+    {
+      "id": "7201802196:7201802196",
+      "data": {
+        "RecipientWalletNumber": true,
+        "waitingForTipAmount": true,
+        "waitingForAutoBuyPumpfunAmount": true
       }
     }
   ]

